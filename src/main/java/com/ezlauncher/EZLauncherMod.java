@@ -1,21 +1,28 @@
 package com.ezlauncher;
 
+import com.ezlauncher.api.CheckHandler;
+import com.ezlauncher.api.DownloadHandler;
+import com.ezlauncher.api.ServerListHandler;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-@Mod(modid = EZLauncherMod.MODID, version = EZLauncherMod.VERSION)
+@Mod(EZLauncherMod.MODID)
 public class EZLauncherMod {
     public static final String MODID = "ezlauncher";
-    public static final String VERSION = "1.0";
     private static HttpServer server;
     private static final int API_PORT = 8080;
 
-    @Mod.EventHandler
-    public void onServerStarting(FMLServerStartingEvent event) {
+    public EZLauncherMod() {
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @net.minecraftforge.eventbus.api.SubscribeEvent
+    public void onServerStarting(ServerStartedEvent event) {
         try {
             server = HttpServer.create(new InetSocketAddress(API_PORT), 0);
             server.createContext("/api/servers", new ServerListHandler());
@@ -28,8 +35,8 @@ public class EZLauncherMod {
         }
     }
 
-    @Mod.EventHandler
-    public void onServerStopping(FMLServerStoppingEvent event) {
+    @net.minecraftforge.eventbus.api.SubscribeEvent
+    public void onServerStopping(ServerStoppingEvent event) {
         if (server != null) {
             server.stop(0);
             System.out.println("[EZLauncher] API arrêtée");
