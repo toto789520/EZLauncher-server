@@ -1,0 +1,19 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="All rights reserved"
+
+[[mods]]
+modId="ezlauncher"
+version="${version}"
+displayName="EZLauncher Server"
+authors="toto789520"
+description='''
+Plugin pour exposer une API HTTPS et gérer les modpacks.
+'''
+
+[[dependencies.ezlauncher]]
+modId="forge"
+mandatory=true
+versionRange="[43,)"
+ordering="NONE"
+side="BOTH"
