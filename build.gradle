@@ -1,14 +1,15 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url = "https://files.minecraftforge.net/maven" }
         maven { url = "https://maven.minecraftforge.net/" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:6.0.11'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
+
 version = '1.0'
 group = 'com.ezlauncher'
 archivesBaseName = 'EZLauncher'
@@ -26,7 +27,7 @@ minecraft {
 
 repositories {
     mavenCentral()
-    maven { url = "https://files.minecraftforge.net/maven" }
+    maven { url = "https://maven.minecraftforge.net/" }
 }
 
 dependencies {
