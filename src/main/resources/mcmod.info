@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "ezlauncher",
+    "name": "EZLauncher Server",
+    "description": "Plugin pour exposer une API HTTPS et gérer les modpacks.",
+    "version": "1.0",
+    "mcversion": "1.19.2",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["toto789520"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
