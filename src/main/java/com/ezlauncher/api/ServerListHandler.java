@@ -21,7 +21,15 @@ public class ServerListHandler implements HttpHandler {
             String smallIcon = "/server-icon.png";
             String bigIcon = Files.exists(Paths.get("server-icon-big.png")) ? "/server-icon-big.png" : null;
 
-            String hash = com.ezlauncher.utils.HashCalculator.calculateSHA256("mode_client");
+            // Calcule le hash du fichier mode_client.zip (ou du dossier si le fichier n'existe pas)
+            String hash = "";
+            if (Files.exists(Paths.get("mode_client.zip"))) {
+                hash = com.ezlauncher.utils.HashCalculator.calculateSHA256("mode_client.zip");
+            } else if (Files.exists(Paths.get("mode_client"))) {
+                // Si le fichier n'existe pas, on zippe le dossier et on calcule le hash du zip
+                com.ezlauncher.utils.ZipUtils.zipDirectory("mode_client", "mode_client.zip");
+                hash = com.ezlauncher.utils.HashCalculator.calculateSHA256("mode_client.zip");
+            }
 
             boolean isPrivate = Files.exists(Paths.get("whitelist.json"));
 

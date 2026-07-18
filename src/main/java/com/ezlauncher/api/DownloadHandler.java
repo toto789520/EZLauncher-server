@@ -14,6 +14,7 @@ public class DownloadHandler implements HttpHandler {
         try {
             Path modpackPath = Paths.get("mode_client.zip");
             if (!Files.exists(modpackPath)) {
+                // Si le fichier n'existe pas, on zippe le dossier mode_client/
                 modpackPath = com.ezlauncher.utils.ZipUtils.zipDirectory("mode_client", "mode_client.zip");
             }
 
